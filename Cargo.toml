@@ -3,5 +3,6 @@ resolver = "2"
 members = [
   "aoc-core",
   "aoc-01",
+  "aoc-02",
 ]
 
