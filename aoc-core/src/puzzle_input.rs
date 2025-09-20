@@ -30,7 +30,7 @@ impl PuzzleInput {
         &self.raw
     }
 
-    pub fn to_lines(&self) -> Lines {
+    pub fn to_lines(&'_ self) -> Lines<'_> {
         self.raw.lines()
     }
 }
