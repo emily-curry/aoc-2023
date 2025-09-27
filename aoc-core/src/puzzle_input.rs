@@ -30,6 +30,10 @@ impl PuzzleInput {
         &self.raw
     }
 
+    pub fn as_str(&self) -> &str {
+        self.raw.as_str()
+    }
+
     pub fn to_lines(&'_ self) -> Lines<'_> {
         self.raw.lines()
     }
