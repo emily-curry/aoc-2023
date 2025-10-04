@@ -4,6 +4,7 @@ pub mod cardinal_direction;
 pub mod includes;
 pub mod overlaps;
 pub mod puzzle_input;
+pub mod set;
 
 #[cfg(test)]
 mod tests {

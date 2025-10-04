@@ -1,7 +1,7 @@
-use aoc_core::overlaps::Overlaps;
+use aoc_core::includes::Includes;
+use aoc_core::set::range_set::RangeSet;
+use aoc_core::set::{SetDifference, SetIntersection, SetUnion};
 use std::ops::Range;
-use std::thread;
-use std::thread::JoinHandle;
 
 pub struct SeedAlmanac {
     seeds: Vec<u64>,
@@ -17,31 +17,21 @@ impl SeedAlmanac {
     }
 
     pub fn to_location_range_min(&self) -> u64 {
-        let seed_ranges = self.seeds.chunks(2).map(|v| {
-            let start = v.get(0).unwrap();
-            let size = v.get(1).unwrap();
-            *start..start + size
-        });
-        let handles: Vec<JoinHandle<u64>> = seed_ranges
-            .map(|r| {
-                let maps = self.maps.clone();
-                thread::spawn(move || {
-                    r.into_iter()
-                        .map(|u| maps.iter().fold(u, |acc, val| val.map(&acc)))
-                        .min()
-                        .unwrap()
-                })
+        let seed_ranges = self
+            .seeds
+            .chunks(2)
+            .map(|v| {
+                let start = v.get(0).unwrap();
+                let size = v.get(1).unwrap();
+                *start..start + size
             })
             .collect();
-        let mut min: Option<u64> = None;
-        for h in handles {
-            let r = h.join().unwrap();
-            match min {
-                None => min = Some(r),
-                Some(c) => min = Some(c.min(r)),
-            }
+        let mut range_set = RangeSet::new(seed_ranges);
+        for map in self.maps.iter() {
+            let next_range_set = map.map_range_set(&range_set);
+            range_set = next_range_set
         }
-        min.unwrap()
+        range_set.iter().next().unwrap().start
     }
 }
 
@@ -78,14 +68,33 @@ impl SeedMap {
         *input
     }
 
-    // fn map_ranges(&self, input: &Vec<Range<u64>>) -> Vec<Range<u64>> {
-    //     let r: Vec<Range<u64>> = input
-    //         .iter()
-    //         .flat_map(|i| self.mappings.iter().filter_map(|m| m.map_range(i)))
-    //         .collect();
-    //     // any inputs that aren't accounted for by a mapping need to map to themselves
-    //     input.
-    // }
+    fn to_range_set(&self) -> RangeSet<u64> {
+        let source_ranges = self.mappings.iter().map(|x| x.source.clone()).collect();
+        RangeSet::new(source_ranges)
+    }
+
+    fn map_range_set(&self, lhs: &RangeSet<u64>) -> RangeSet<u64> {
+        let rhs = self.to_range_set();
+        // the ranges that will have some transformation applied below
+        let will_map = lhs.intersection(&rhs);
+        // the ranges that will have no transformation applied
+        let unmapped = lhs.difference(&will_map);
+        // the ranges with transformations applied in this seed map's mappings
+        let mut mapped = vec![];
+        'outer: for r in will_map.iter() {
+            for m in self.mappings.iter() {
+                if let Some(u) = m.shift_range(r) {
+                    mapped.push(u);
+                    continue 'outer;
+                }
+            }
+            panic!(
+                "All ranges in will_map should have been mapped!\n{}-to-{}, mapping {}..{} in {}",
+                self.source_name, self.dest_name, r.start, r.end, rhs
+            );
+        }
+        unmapped.union(&RangeSet::new(mapped))
+    }
 }
 
 impl From<&str> for SeedMap {
@@ -119,14 +128,15 @@ impl SeedMapping {
         }
     }
 
-    fn map_range(&self, input: &Range<u64>) -> Option<Range<u64>> {
-        if input.overlaps(&self.source) {
-            let result_start =
-                self.source.start.max(input.start) - self.source.start + self.dest.start;
-            let result_end = self.source.end.min(input.end) - self.source.start + self.dest.start;
-            Some(result_start..result_end)
-        } else {
+    fn shift_range(&self, rhs: &Range<u64>) -> Option<Range<u64>> {
+        if !self.source.includes(rhs) {
             None
+        } else {
+            let abs_diff = self.source.start.abs_diff(self.dest.start);
+            match self.source.start <= self.dest.start {
+                true => Some(rhs.start + abs_diff..rhs.end + abs_diff),
+                false => Some(rhs.start - abs_diff..rhs.end - abs_diff),
+            }
         }
     }
 }
