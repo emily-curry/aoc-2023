@@ -2,6 +2,7 @@ extern crate core;
 
 pub mod cardinal_direction;
 pub mod includes;
+pub mod num;
 pub mod overlaps;
 pub mod puzzle_input;
 pub mod set;
