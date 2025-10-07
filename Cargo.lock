@@ -59,5 +59,124 @@ dependencies = [
 ]
 
 [[package]]
+name = "aoc-09"
+version = "0.1.0"
+dependencies = [
+ "aoc-core",
+]
+
+[[package]]
+name = "aoc-10"
+version = "0.1.0"
+dependencies = [
+ "aoc-core",
+]
+
+[[package]]
+name = "aoc-11"
+version = "0.1.0"
+dependencies = [
+ "aoc-core",
+]
+
+[[package]]
+name = "aoc-12"
+version = "0.1.0"
+dependencies = [
+ "aoc-core",
+]
+
+[[package]]
+name = "aoc-13"
+version = "0.1.0"
+dependencies = [
+ "aoc-core",
+]
+
+[[package]]
+name = "aoc-14"
+version = "0.1.0"
+dependencies = [
+ "aoc-core",
+]
+
+[[package]]
+name = "aoc-15"
+version = "0.1.0"
+dependencies = [
+ "aoc-core",
+]
+
+[[package]]
+name = "aoc-16"
+version = "0.1.0"
+dependencies = [
+ "aoc-core",
+]
+
+[[package]]
+name = "aoc-17"
+version = "0.1.0"
+dependencies = [
+ "aoc-core",
+]
+
+[[package]]
+name = "aoc-18"
+version = "0.1.0"
+dependencies = [
+ "aoc-core",
+]
+
+[[package]]
+name = "aoc-19"
+version = "0.1.0"
+dependencies = [
+ "aoc-core",
+]
+
+[[package]]
+name = "aoc-20"
+version = "0.1.0"
+dependencies = [
+ "aoc-core",
+]
+
+[[package]]
+name = "aoc-21"
+version = "0.1.0"
+dependencies = [
+ "aoc-core",
+]
+
+[[package]]
+name = "aoc-22"
+version = "0.1.0"
+dependencies = [
+ "aoc-core",
+]
+
+[[package]]
+name = "aoc-23"
+version = "0.1.0"
+dependencies = [
+ "aoc-core",
+]
+
+[[package]]
+name = "aoc-24"
+version = "0.1.0"
+dependencies = [
+ "aoc-core",
+]
+
+[[package]]
+name = "aoc-25"
+version = "0.1.0"
+dependencies = [
+ "aoc-core",
+]
+
+[[package]]
 name = "aoc-core"
 version = "0.1.0"

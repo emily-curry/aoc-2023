@@ -11,6 +11,23 @@
       <sourceFolder url="file://$MODULE_DIR$/aoc-06/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/aoc-07/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/aoc-08/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/aoc-09/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/aoc-10/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/aoc-11/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/aoc-12/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/aoc-13/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/aoc-14/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/aoc-15/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/aoc-16/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/aoc-17/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/aoc-18/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/aoc-19/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/aoc-20/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/aoc-21/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/aoc-22/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/aoc-23/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/aoc-24/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/aoc-25/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
