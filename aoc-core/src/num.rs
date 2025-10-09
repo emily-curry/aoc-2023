@@ -27,6 +27,26 @@ where
     }
 }
 
+pub trait Bounded {
+    const MIN: Self;
+    const MAX: Self;
+}
+
+macro_rules! impl_bounded {
+    ( $( $x:ty ),* ) => {
+
+            $(
+            impl Bounded for $x {
+                const MIN: Self = <$x>::MIN;
+                const MAX: Self = <$x>::MAX;
+            }
+        )*
+
+    };
+}
+
+impl_bounded!(usize, u8, u16, u32, u64, u128, isize, i8, i16, i32, i64, i128);
+
 pub trait GreatestCommonFactor<T> {
     fn gcf(&self, other: &T) -> T;
 }
